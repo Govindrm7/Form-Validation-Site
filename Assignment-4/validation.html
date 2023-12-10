@@ -1,0 +1,538 @@
+<!Doctype html>
+<html lang="en">
+
+<head>
+    <title>Feedback</title>
+    <style>
+        label {
+            float: left;
+            width: 150px;
+        }
+
+        #container {
+            width: 700px;
+            margin: auto;
+            background-color: beige;
+        }
+
+        main {
+            padding: 50px;
+        }
+
+        #divTable {
+            width: 100%;
+        }
+
+        table {
+            margin: auto;
+            margin-top: 20px;
+        }
+
+        td,
+        th {
+            margin: 5px;
+        }
+
+        #tableScore th:nth-child(6),
+        #tableScore td:nth-child(6) {
+            display: none;
+        }
+
+        .coffee_label {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        .valid {
+
+            border: 2px solid green;
+        }
+
+
+
+        .invalid {
+
+            border: 2px solid red;
+        }
+
+        label {
+            font-family: sans-serif;
+            font-size: 1rem;
+            padding-right: 10px;
+        }
+
+        select {
+            font-size: 0.9rem;
+            padding: 2px 5px;
+        }
+
+        label {
+            display: block;
+            margin-top: 11px;
+        }
+
+
+        #coffee-option {
+            display: none;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="container">
+
+        <main>
+            <h2>Feedback</h2>
+            <h3>Love something? Hate something? Let us know!</h3>
+            Note : Fields marked with an asterisk(*) are mandatory
+            <br><br>
+            <form method="post" novalidate id="formid">
+                <label id="titlereq">Title*:</label>
+                <input type="radio" name="title" id="miss" value="miss" required="required" />Miss
+                <input type="radio" name="title" id="mr" value="mr" required="required" />Mr.
+                <input type="radio" name="title" id="mrs" value="mrs" required="required" />Mrs.
+                <br><br>
+                <label for="firstName">First Name*:</label>
+                <input type="text" name="firstName" id="firstName" placeholder="First Name"
+                    onclick="validateFirstName()" />
+                <br><br>
+
+
+                <label for="lastName">Last Name*:</label>
+                <input type="text" name="lastName" id="lastName" placeholder="Last Name" onclick="validateLastName()" />
+                <br><br>
+
+
+                <label for="emailId">Email Id*:</label>
+                <input type="text" name="emailId" id="emailId" placeholder="yourname@northeastern.edu"
+                    onclick="validateEmail()" />
+                <br><br>
+
+
+                <label for="phoneNumber">Phone Number*:</label>
+                <input type="text" name="phoneNumber" id="phoneNumber" placeholder="xxx-xxx-xxxx"
+                    onclick="validatePhoneNumber()" />
+                <br><br>
+                <label for="streetAddress-1">Street Address 1*:</label>
+                <input type="text" name="streetAddress-1" id="streetAddress1" placeholder="Street Address 1"
+                    onclick="validateStreetAddress1()" required="required" />
+                <br><br>
+                <label for="streetAddress-2">Street Address 2:</label>
+                <input type="text" name="streetAddress-2" id="streetAddress2" placeholder="Street Address 2" />
+                <br><br>
+
+                <label for="zipcode">ZipCode*:</label>
+                <input type="text" name="zipcode" id="zipcode" placeholder="xxxxxx" onclick="validateZipCode()" />
+                <br><br>
+
+                <label for="zipcode" id="howHear">How did you hear*:</label>
+                <input type='checkbox' name="source" value="facebook" onclick="validateHowYouHear" /> Facebook
+                <input type='checkbox' name="source" value="google" /> Google
+                <input type='checkbox' name="source" value="yelp" /> Yelp
+                <br><br>
+
+                <label for="comments">Comments*:</label>
+                <textarea name="comments" id="comments" placeholder="Your comments" rows="5" cols="25" required
+                    onclick="validateComments()"></textarea>
+                <br><br>
+
+                <label for="select-coffeee">Select Coffee:</label>
+
+                <!-- <select name="coffeeType" id="select-coffee" onchange="addCheckbox()"> -->
+                <select name="coffeeType" id="select-coffee">
+                    <option value="">--Please choose an option--</option>
+                    <option value="espresso">Espresso</option>
+                    <option value="latte">Latte</option>
+                    <option value="mocha">Mocha</option>
+                    <option value="grande">Grande</option>
+                    <option value="capaccino">capaccino</option>
+                </select>
+
+                <div id="coffee-option"></div>
+
+
+
+
+                <br><br>
+                <!-- <div id="espresso-div">
+                    <ul>
+                        <li type="checkbox"> Small </li>
+                        <li type="checkbox"> Medium </li>
+                        <li type="checkbox"> Large </li>
+
+                    </ul>
+                </div>
+                <div id="latte-div">
+                    <ul>
+                        <li type="checkbox"> Small </li>
+                        <li type="checkbox"> Large </li>
+                    </ul>
+                </div>
+                <div id="mocha-div">
+                    <ul>
+                        <li type="checkbox"> Medium </li>
+                        <li type="checkbox"> Large </li>
+                    </ul>
+                </div>
+                <div id="grande-div">
+                    <ul>
+                        <li type="checkbox"> Small </li>
+                    </ul>
+                </div>
+                <div id="capaccino-div">
+                    <ul>
+                        <li type="checkbox"> Small </li>
+                        <li type="checkbox"> Large </li>
+                        <li type="checkbox"> Medium </li>
+                    </ul>
+                </div> -->
+
+
+
+
+                <input type="submit" id="submitButton" disabled="validForm()">
+                <input type="Reset">
+
+                <br><br>
+
+
+
+            </form>
+
+
+        </main>
+    </div>
+
+    <div id="divTable">
+        <table id="tableScore">
+            <th>Title</th>
+            <th>First Name</th>
+            <th>Last name</th>
+            <th>Email</th>
+            <th>Phone No</th>
+            <th>Zip </th>
+            <th>Address1</th>
+            <th>Address2</th>
+
+            <th>Coffee Selected </th>
+            <th>How You Hear </th>
+            <th>Coments </th>
+            <tbody id="tableBody">
+
+            </tbody>
+        </table>
+    </div>
+
+    <script type="text/javascript">
+        document.getElementById("firstName").addEventListener("change", validateFirstName);
+        document.getElementById("lastName").addEventListener("change", validateLastName);
+        document.getElementById("emailId").addEventListener("change", validateEmail);
+        document.getElementById("phoneNumber").addEventListener("change", validatePhoneNumber);
+        document.getElementById("zipcode").addEventListener("change", validateZipCode);
+        // document.getElementById("select-coffee").addEventListener("change", validateCoffeeList);
+        document.getElementById("howHear").addEventListener("change", validateHowYouHear);
+        document.getElementById("comments").addEventListener("change", validateComments);
+
+        function validateHowYouHear() {
+            console.log('pressed how you hear')
+        }
+
+        function validateFirstName() {
+            const firstName = document.getElementById("firstName").value;
+            const isValid = /^[a-zA-Z]+$/.test(firstName) && firstName.length >= 2 && firstName.length <= 12;
+            updateFieldValidation("firstName", isValid);
+            return isValid;
+
+        }
+
+        function validateLastName() {
+            const lastName = document.getElementById("lastName").value;
+            const isValid = /^[a-zA-Z]+$/.test(lastName) && lastName.length >= 2 && lastName.length <= 12;
+            updateFieldValidation("lastName", isValid);
+            return isValid;
+
+        }
+
+        function validateEmail() {
+            const email = document.getElementById("emailId").value;
+            const isValid = /^[a-zA-Z0-9._-]+@northeastern\.edu$/.test(email);
+            updateFieldValidation("emailId", isValid);
+            return isValid;
+
+        }
+
+        function validatePhoneNumber() {
+            const phoneNumber = document.getElementById("phoneNumber").value;
+            const isValid = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/.test(phoneNumber);
+            updateFieldValidation("phoneNumber", isValid);
+            return isValid;
+        }
+
+        function validateZipCode() {
+            const zipCode = document.getElementById("zipcode").value;
+            const isValid = /^\d{5}$/.test(zipCode);
+            updateFieldValidation("zipcode", isValid);
+            return isValid;
+
+
+        }
+
+        function validateStreetAddress1() {
+            const streetAddress_1 = document.getElementById("streetAddress-1").value;
+            const isValid = firstName.length >= 2 && firstName.length <= 12;
+            updateFieldValidation("streetAddress-1", isValid);
+            return isValid;
+        }
+
+        function validateComments() {
+            const comments = document.getElementById("comments").value;
+            const isValid = comments.trim() !== "";
+            updateFieldValidation("comments", isValid);
+            return isValid;
+
+        }
+
+        function updateFieldValidation(fieldId, isValid) {
+            const field = document.getElementById(fieldId);
+            if (isValid) {
+                field.style.borderColor = "green";
+            } else {
+                field.style.borderColor = "red";
+            }
+        }
+
+        function validateForm() {
+            const isValidForm = validateFirstName() && validateLastName() && validateEmail() &&
+                validatePhoneNumber() && validateZipCode() && validateComments();
+            return isValidForm;
+        }
+
+
+
+
+
+        function showespresso() {
+            const espresso = document.getElementById('cEspresso');
+            const espresso_div = document.getElementById('espresso-div');
+            if (espresso.checked) {
+                espresso_div.style.display = "flex";
+            } else {
+                espresso_div.style.display = "none";
+            }
+        }
+
+        function showlatte() {
+            const latte = document.getElementById('cLatte');
+            const latte_div = document.getElementById('latte-div')
+            if (latte.checked) {
+                latte_div.style.display = "flex";
+            } else {
+                latte_div.style.display = "none";
+            }
+        }
+
+        function showmocha() {
+            const latte = document.getElementById('cmocha');
+            const mocha_div = document.getElementById('mocha-div')
+            if (mocha.checked) {
+                mocha_div.style.display = "flex";
+            } else {
+                mocha_div.style.display = "none";
+            }
+        }
+
+        function showgrande() {
+            const latte = document.getElementById('cLatte');
+            const latte_div = document.getElementById('latte-div')
+            if (latte.checked) {
+                latte_div.style.display = "flex";
+            } else {
+                latte_div.style.display = "none";
+            }
+        }
+
+        function showcappacino() {
+            const latte = document.getElementById('cLatte');
+            const latte_div = document.getElementById('latte-div')
+            if (latte.checked) {
+                latte_div.style.display = "flex";
+            } else {
+                latte_div.style.display = "none";
+            }
+        }
+
+
+
+
+
+        function showInput() {
+            const table = document.getElementById("divTable");
+
+            const title = document.querySelector("input[name='title']:checked").value;
+            const firstName = document.querySelector("#firstName").value;
+            const lastName = document.querySelector("#lastName").value;
+            const email = document.querySelector("#emailId").value;
+            const phoneNo = document.querySelector("#phoneNumber").value;
+            const zipCode = document.querySelector("#zipcode").value;
+            const address1 = document.querySelector("#streetAddress1").value;
+            const address2 = document.querySelector("#streetAddress2").value;
+            const coffee = document.querySelector("#select-coffee").value;
+
+
+            const comments = document.querySelector("#comments").value;
+
+            let sourceString = ""
+            let howHear = [...document.getElementsByName('source')].filter(value => value.checked);
+            console.log(howHear)
+            howhear = howHear.map(e => {
+                sourceString += e.value + " ";
+                return e.value;
+            })
+
+            const cells = document.createElement('tr')
+            cells.innerHTML = `
+            <td>${title}</td>
+            <td>${firstName}</td>
+            <td>${lastName}</td>
+            <td>${email}</td>
+            <td>${phoneNo}</td>
+            <td>${zipCode}</td>
+            <td>${address1}</td>
+            <td>${address2}</td>
+            <td>${coffee}</td>
+
+
+            <td>${sourceString}</td>
+            <td>${comments}</td>
+            `;
+
+            console.log(`
+            <td>${title}</td>
+            <td>${firstName}</td>
+            <td>${lastName}</td>
+            <td>${email}</td>
+            <td>${phoneNo}</td>
+            <td>${zipCode}</td>
+            <td>${howHear}</td>
+
+            <td>${comments}</td>
+            `)
+            document.getElementById('tableScore').appendChild(cells);
+
+
+
+
+            document.getElementById('formid').reset();
+
+        }
+
+        function getSelectedCoffee() {
+            const coffeeOptions = ["Espresso", "Latte", "Mocha", "Grande", "Cappuccino"];
+            const selectedCoffee = [];
+            coffeeOptions.forEach(option => {
+                const checkbox = document.getElementById(`c${option}`);
+                if (checkbox.checked) {
+                    selectedCoffee.push(option);
+                }
+            });
+            return selectedCoffee.join(", ");
+        }
+
+        function getHowYouHear() {
+            const sources = document.getElementsByName("source");
+            const selectedSources = [];
+            sources.forEach(source => {
+                if (source.checked) {
+                    selectedSources.push(source.value);
+                }
+            });
+            return selectedSources.join(", ");
+        }
+        document.getElementById("formid").addEventListener("submit", function (event) {
+            event.preventDefault();
+            showInput();
+        });
+
+        document.getElementById("formid").addEventListener("change", function () {
+            const submitButton = document.getElementById("submitButton");
+            if (validateForm()) {
+                submitButton.disabled = false;
+            } else {
+                submitButton.disabled = true;
+            }
+            // submitButton.disabled = false;
+        });
+        const formFields = [
+            "firstName",
+            "lastName",
+            "emailId",
+            "phoneNumber",
+            "zipcode",
+            "comments"
+        ];
+
+        function validate() {
+            console.log('Validate pressed')
+        }
+
+        formFields.forEach(field => {
+            document.getElementById(field).addEventListener("change", function () {
+                console.log('HUE')
+                validate();
+            });
+        });
+
+        // function addCheckbox() {
+        //     const selectCoffee = document.getElementById("select-coffee");
+        //     const selecteOption = selectCoffee.value;
+        //     const coffeeOptionsdiv = document.getElementById("coffee-option");
+
+        //     coffeeOptionsdiv.innerHTML = "";
+
+        //     if (selectCoffee.value !== "") {
+
+        //         const coffeeType = selectCoffee.value;
+        //         const sizes = getCoffeeSizes(coffeeType);
+
+        //         sizes.forEach((size) => {
+        //             const label = document.createElement("label");
+        //             label.textContent = size;
+
+        //             const checkbox = document.createElement("input");
+
+        //             checkbox.type = "checkbox";
+
+        //             checkbox.name = "coffeeSize";
+        //             checkbox.value = size;
+
+        //             coffeeOptionDiv.appendChild(label);
+
+        //             coffeeOptionDiv.appendChild(checkbox);
+        //         });
+
+        //         coffeeOptionDiv.style.display = "block";
+        //     } else {
+        //         coffeeOptionDiv.style.display = "none";
+        //     }
+        // }
+
+
+        function getCoffeeSizes(coffeeType) {
+            const coffeeSizes = {
+                espresso: ["Small", "Mediuum", "Large"],
+                latte: ["Small", "Large"],
+                mocha: ["Medium", "Large"],
+                grande: ["Small"],
+                cappuccino: ["Small", "Large", "Medium"]
+            };
+
+            return coffeeSizes[coffeeType] || [];
+        }
+    </script>
+
+
+
+</body>
+
+</html>
