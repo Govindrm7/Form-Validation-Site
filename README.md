@@ -1,6 +1,6 @@
 # Form-Validation-Site
 
-This project focuses on implementing various form validations, dynamic field changes, and displaying the submitted form data in an HTML table.
+This project focuses on implementing various form validations using basics of JavaScript , dynamic field changes, and displaying the submitted form data in an HTML table.
 
 ## Form Validations
 
